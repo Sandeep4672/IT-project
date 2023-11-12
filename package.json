@@ -1,8 +1,22 @@
 {
+  "name": "web-dev-complete-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Maximilian Schwarzmüller",
+  "license": "ISC",
   "dependencies": {
     "connect-mongodb-session": "^3.1.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "mongodb": "^6.2.0"
+    "mongodb": "^6.2.0",
+    "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
