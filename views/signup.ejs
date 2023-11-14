@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/styles/signup.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Admin</h1>
+    <% if (inputData.errorMessage) { %>
+        <section class="alert">
+          <h2>Invalid Input</h2>
+          <p><%= inputData.errorMessage %></p>
+        </section>
+      <% } %>
+    <form id="studentForm" action="/signup" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="<%=inputData.name%>" required>
+
+      <label for="rollNo">Roll No:</label>
+      <input type="text" id="rollNo" name="rollNo" value="<%=inputData.rollno%>" required>
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" value="<%=inputData.username%>" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" value="<%=inputData.password%>"" required>
+
+      <div class="buttons">
+        <button type="submit">Add Student</button>
+        <button type="button" onclick="addAnotherStudent()">Add Another Student</button>
+        <a href="home.html" class="button">Continue to Home</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="admin-scripts.js"></script>
+</body>
+</html>
