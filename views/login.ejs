@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="/styles/login.css">
+</head>
+<body>
+
+  <div class="container">
+        <% if (inputData.errorMessage) { %>
+            <section class="alert">
+              <h2>Invalid Input</h2>
+              <p><%= inputData.errorMessage %></p>
+            </section>
+          <% } %>
+    <h1>Sign In</h1>
+    <form id="signInForm" action="/login" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Sign In</button>
+    </form>
+    <p id="message"></p>
+  </div>
+</body>
+</html>

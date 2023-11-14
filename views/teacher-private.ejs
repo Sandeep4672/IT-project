@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teacher Page</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h1>Teacher Page</h1>
+  <div>
+    <h2>Student Code Submissions</h2>
+    <div id="student-code"></div>
+  </div>
+  <div>
+    <h2>Feedback and Comments</h2>
+    <textarea id="feedback-input" rows="5" cols="50"></textarea>
+    <button id="send-feedback">Send Feedback</button>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/scripts/broadcast.js"></script>
+
+</body>
+</html>

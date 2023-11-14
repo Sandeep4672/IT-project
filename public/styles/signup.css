@@ -1,0 +1,87 @@
+/* admin-styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: left;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #007bff;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 8px;
+  }
+  
+  input {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .buttons {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+  }
+  
+  button, .button {
+    display: inline-block;
+    width: 400px;
+    padding: 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    background-color: #ddd;
+    color: #000
+  }
+  
+  
+  button:hover, .button:hover {
+    background-color: #0056b3;
+    color: #fff
+  }
+
+  .alert {
+    border-radius: 4px; 
+    background-color: rgb(255, 192, 180); 
+    color: rgb(199, 51, 15); 
+    padding: 1rem; 
+  }
+  
+  .alert h2 {
+    font-size: 1rem;
+    margin: 0.5rem 0; 
+    text-transform: uppercase;
+  }
+  
+  .alert p {
+    margin: 0.5rem 0; 
+  }
+  
+  

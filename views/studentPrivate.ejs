@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Page</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+    .underline {
+      text-decoration: underline;
+    }
+    .strikethrough {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Page</h1>
+  <div>
+    <h2>Code Submission</h2>
+    <textarea id="code-input" rows="10" cols="50"></textarea>
+    <button id="submit-code">Submit</button>
+    <button id="clear-code">Clear</button>
+  </div>
+  <div>
+    <h2>Teacher's Feedback</h2>
+    <div id="teacher-feedback"></div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/scripts/broadcast.js"></script>
+
+</body>
+</html>

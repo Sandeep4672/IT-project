@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student</title>
+</head>
+<body>
+  <% if (locals.isAuth) { %>
+    <form action="/logout" method="POST">
+      <button>Logout</button>
+    </form>
+<% } %>
+  <h1>Student View</h1>
+  <div id="code-display"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/scripts/student-script.js"></script>
+</body>
+</html>
+
