@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const socket = io();
   
-    // Student Page Scripts
 
     function getStudentName(callback) {
       $.ajax({
@@ -17,16 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     $('#submit-code').click(() => {
-      const code = $('#code-input').val();
-            getStudentName((error, studentName) => {
-        if (error) {
-          console.error('Failed to retrieve student name:', error);
-        } else {
-          
-          socket.emit('submitCode', code, studentName);
-        }
-      });
+    const code = $('#code-input').val();
+    getStudentName((error, studentName) => {
+      if (error) {
+        console.error('Failed to retrieve student name:', error);
+      } else {
+        $.post('/student/codeSubmission', { code: code,username: studentName}, (response) => {
+          console.log(response); 
+        });
+        socket.emit('submitCode', code, studentName);
+      }
     });
+  });
   
     $('#clear-code').click(() => {
       $('#code-input').val('');

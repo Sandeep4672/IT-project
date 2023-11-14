@@ -29,5 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     socket.on('codeBroadcast', (code) => {
       $('#code-display').html(`<pre>${code}</pre>`);
     });
+
+    $('.notification-container').on('click', 'p', function () {
+      const studentName = $(this).text().split(' ')[0];
+      window.location.href = `/teacher/private?student=${studentName}`;
+  });
+
   });
   
