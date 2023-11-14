@@ -127,7 +127,6 @@ async function login(req, res, next) {
       });
       return;
     }
-  
     authUtil.createUserSession(req, existingUser, function () {
         if(existingUser.isAdmin){
             res.redirect('/');
