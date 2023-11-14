@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     socket.on('codeSubmission', (code) => {
       $('#student-code').append($('<div>').text(code));
     });
+
+    socket.on('notification', (message) => {
+      console.log(message);
+      $('.notification-container').append(`<p>${message}</p>`);
+  });    
   
     $('#send-feedback').click(() => {
       const feedback = $('#feedback-input').val();

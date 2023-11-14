@@ -1,23 +1,51 @@
-const mongodb = require('mongodb');
-
-const MongoClient = mongodb.MongoClient;
+const { MongoClient } = require('mongodb');
 
 let database;
 
+const mongodbURL = process.env.MONGODB_URL;  // Ensure this environment variable is correctly set
+
+console.log(mongodbURL);
+
+let client;
+
+try {
+    client = new MongoClient(mongodbURL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverApi: {
+            version: "1",
+            strict: true,
+            deprecationErrors: true,
+        }
+    });
+} catch (error) {
+    console.error("MongoClient initialization failed:", error.message);
+}
+
 async function connectToDatabase() {
-  const client = await MongoClient.connect('mongodb://127.0.0.1:27017');
-  database = client.db('it_project');
+    if (!client) {
+        console.error("MongoClient is not initialized.");
+        return;
+    }
+    try {
+        await client.connect();
+        console.log(`Connected to the database successfully: ${mongodbURL}`);
+        database = client.db('code2clears');
+    } catch (error) {
+        console.error('Failed to connect to the database:', error.message);
+    }
 }
 
 function getDb() {
-  if (!database) {
-    throw new Error('You must connect first!');
-  }
-
-  return database;
+    if (!database) {
+        const errMsg = 'You must connect first!';
+        console.error(errMsg);
+        throw new Error(errMsg);
+    }
+    return database;
 }
 
 module.exports = {
-  connectToDatabase: connectToDatabase,
-  getDb: getDb
+    connectToDatabase: connectToDatabase,
+    getDb: getDb
 };
