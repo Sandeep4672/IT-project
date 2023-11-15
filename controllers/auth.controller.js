@@ -95,47 +95,57 @@ function getLogin(req, res) {
 }
 
 async function login(req, res, next) {
-    const username = req.body.username;
-    const password = req.body.password;
-  
-    let existingUser;
-    try {
-      existingUser = await User.getUserWithSameUsername(username);
-      console.log(existingUser);
-    } catch (error) {
-      next(error);
-      return;
-    }
-  
-    const sessionErrorData = {
-      errorMessage: 'Invalid credentials - please double-check your username and password!',
-      username: username,
-      password: password,  
-    };
-  
-    if (!existingUser) {
-      sessionFlash.flashDataToSession(req, sessionErrorData, function () {
-        res.redirect('/login');
-      });
-      return;
-    }
-      const passwordIsCorrect = await User.hasMatchingPassword(password, existingUser.password);
-  
-    if (!passwordIsCorrect) {
-      sessionFlash.flashDataToSession(req, sessionErrorData, function () {
-        res.redirect('/login');
-      });
-      return;
-    }
-    authUtil.createUserSession(req, existingUser, function () {
-        if(existingUser.isAdmin){
-            res.redirect('/');
-          }
-          else{
-            res.redirect('/student');
-          }
-    });
+  const username = req.body.username;
+  const password = req.body.password;
+
+  let existingUser;
+  try {
+    existingUser = await User.getUserWithSameUsername(username);
+    console.log(existingUser);
+  } catch (error) {
+    next(error);
+    return;
   }
+
+  const sessionErrorData = {
+    errorMessage: 'Invalid credentials - please double-check your username and password!',
+    username: username,
+    password: password,
+  };
+
+  if (!existingUser) {
+    sessionFlash.flashDataToSession(req, sessionErrorData, function () {
+      res.redirect('/login');
+    });
+    return;
+  }
+
+  const passwordIsCorrect = await User.hasMatchingPassword(password, existingUser.password);
+
+  if (!passwordIsCorrect) {
+    sessionFlash.flashDataToSession(req, sessionErrorData, function () {
+      res.redirect('/login');
+    });
+    return;
+  }
+
+  await new Promise((resolve, reject) => {
+    authUtil.createUserSession(req, existingUser, function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+
+  if (existingUser.isAdmin) {
+    res.redirect('/');
+  } else {
+    res.redirect('/student');
+  }
+}
+
 
 function logout(req, res) {
   authUtil.destroyUserAuthSession(req);
