@@ -30,7 +30,7 @@ async function connectToDatabase() {
     try {
         await client.connect();
         console.log(`Connected to the database successfully: ${mongodbURL}`);
-        database = client.db('code2clears');
+        database = client.db('code2clear');
     } catch (error) {
         console.error('Failed to connect to the database:', error.message);
     }
