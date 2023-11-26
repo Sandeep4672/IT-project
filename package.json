@@ -1,5 +1,5 @@
 {
-  "name": "web-dev-complete-guide",
+  "name": "it",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -7,7 +7,7 @@
     "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "Maximilian Schwarzmüller",
+  "author": "Sandeep",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",

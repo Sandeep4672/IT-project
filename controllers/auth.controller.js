@@ -25,7 +25,7 @@ async function signup(req, res, next) {
     username:req.body.username,
     password: req.body.password,
   };
-  console.log(req.body);
+  console.log("Auth.controller",req.body);
 
   if (
     !validation.userDetailsAreValid(
@@ -101,7 +101,7 @@ async function login(req, res, next) {
   let existingUser;
   try {
     existingUser = await User.getUserWithSameUsername(username);
-    console.log(existingUser);
+    console.log("auth controller",existingUser);
   } catch (error) {
     next(error);
     return;
