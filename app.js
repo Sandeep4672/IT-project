@@ -52,6 +52,18 @@ io.on('connection', (socket) => {
         console.log("Sent code");
         io.emit('codeSubmission', code);
         io.emit('notification', `${studentName} sent you a request`);
+    });    
+
+    socket.on('teacherFeedback', (feedback) => {
+        io.emit('teacherFeedback', feedback);
+    });
+
+    socket.on('sendHighlightedCode', (highlightedCode) => {
+        io.emit('highlightedCodeToStudents', highlightedCode);
+    });
+
+    socket.on('submitCode', (code) => {
+        io.emit('codeSubmission', code);
     });
 
     socket.on('teacherFeedback', (feedback) => {

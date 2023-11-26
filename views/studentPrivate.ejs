@@ -6,15 +6,13 @@
     .highlight {
       background-color: yellow;
     }
-    .underline {
-      text-decoration: underline;
-    }
     .strikethrough {
       text-decoration: line-through;
     }
   </style>
 </head>
 <body>
+  
   <h1>Student Page</h1>
   <div>
     <h2>Code Submission</h2>
@@ -25,6 +23,9 @@
   <div>
     <h2>Teacher's Feedback</h2>
     <div id="teacher-feedback"></div>
+  </div>
+  <h2>Highlighted Code</h2>
+    <div id="highlighted-code" style="border: 1px solid #ccc; padding: 5px;"></div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

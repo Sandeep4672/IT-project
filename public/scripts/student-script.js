@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (error) {
         console.error('Failed to retrieve student name:', error);
       } else {
+        console.log(code);
         $.post('/student/codeSubmission', { code: code,username: studentName}, (response) => {
           console.log(response); 
         });
@@ -36,10 +37,14 @@ document.addEventListener('DOMContentLoaded', function () {
     socket.on('teacherFeedback', (feedback) => {
       $('#teacher-feedback').append(`<p>${feedback}</p>`);
     });
-  
+    socket.on('highlightedCodeToStudents', (highlightedCode) => {
+     $('#highlighted-code').html(highlightedCode);
+    });
+
     // Student View Scripts
     socket.on('codeBroadcast', (code) => {
       document.getElementById('code-display').innerHTML = `<pre>${code}</pre>`;
     });
+    
   });
   

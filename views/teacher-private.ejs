@@ -6,18 +6,34 @@
     .highlight {
       background-color: yellow;
     }
+    .strikethrough {
+      text-decoration: line-through;
+    }
+    
+    .dialog-box {
+      display: none;
+      position: absolute;
+      border: 1px solid #ccc;
+      padding: 5px;
+      background-color: #fff;
+    }
   </style>
 </head>
 <body>
+  <%- include('./views/includes/nav'); %>
   <h1>Teacher Page</h1>
   <div>
-    <h2>Student Code Submission by <%=studentName  %></h2>
-    <div id="student-code"><%=code.code  %></div>
+    <h2>Student Code Submissions</h2>
+    <div id="student-code" contenteditable="true"></div>
   </div>
   <div>
     <h2>Feedback and Comments</h2>
     <textarea id="feedback-input" rows="5" cols="50"></textarea>
     <button id="send-feedback">Send Feedback</button>
+  </div>
+  <div class="dialog-box" id="highlight-options">
+    <button id="foreground-highlight">Highlight</button>
+    <button id="strikethrough-highlight">Wrong</button>
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
