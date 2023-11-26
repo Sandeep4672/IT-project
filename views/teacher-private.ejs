@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Teacher Page</title>
+  <title>Teacher Private</title>
+  <link rel="stylesheet" type="text/css" href="/styles/teacherPrivate.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     .highlight {
       background-color: yellow;
@@ -9,15 +11,21 @@
   </style>
 </head>
 <body>
-  <h1>Teacher Page</h1>
-  <div>
-    <h2>Student Code Submission by <%=studentName  %></h2>
-    <div id="student-code"><%=code.code  %></div>
-  </div>
-  <div>
-    <h2>Feedback and Comments</h2>
-    <textarea id="feedback-input" rows="5" cols="50"></textarea>
-    <button id="send-feedback">Send Feedback</button>
+  <h1>Code2Clear</h1>
+  <div class="main-container">
+    <div class="notification-container">
+      <h2>Notifications</h2>
+      <div id="notification-container"></div>
+    </div>
+    <div class="code-container">
+      <div id="student-code"></div>
+      <button id="send-button">Send</button>
+    </div>
+    <div class="feedback-container">
+      <h2>Feedback & Comments</h2>
+      <textarea id="feedback-input" rows="13" cols="21"></textarea>
+      <button id="send-feedback">Send Feedback</button>
+    </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

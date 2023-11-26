@@ -13,8 +13,15 @@ body {
     padding: 15px;
     text-align: center;
   }
-  
-  .main-container {
+  h3 {
+    font-size:small;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+  }
+.main-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,24 +30,47 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%; 
-    height :500px;
+    height:100%;
     max-width: 1200px; 
     margin: 0 auto;
+    max-height: 1200px;
   }
-  .notification-container {
+  .highlighted-code{
     height: 450px;
     padding: 10px;
     background-color: #e3e6ea;
     border-radius: 8px;
     margin-right: 10px;
-    margin-top: 10px;
     width: 250px; 
     align-self: center;
     border: 1px solid #ccc;
+    padding: 5px;
     max-height: 450px; 
     overflow-y: auto;
   }
   
+  .highlighted-code h2 {
+    background-color: #007bff;
+    color: #eef0f3;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .notification-container{
+    height: 450px;
+    padding: 10px;
+    background-color: #e3e6ea;
+    border-radius: 8px;
+    margin-right: 10px;
+    width: 250px; 
+    align-self: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    max-height: 450px; 
+    overflow-y: auto;
+  }
   
   .notification-container h2 {
     background-color: #007bff;
@@ -53,38 +83,54 @@ body {
     border-radius: 8px;
   }
   .code-container {
-    flex: 1;
-    padding-right: -55px;
-    padding: 10px;
-    width: 100%;
-    height:500px;
-    height :100%;
-    padding-top: 20px;
-    padding-bottom: 5px;
+    height:400px;
+    padding: 2px;
+    padding-bottom: 10px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    width: 600px; 
+    margin-top: -50px;
+    align-items: center;
+    
   }
- 
-  
+
   #code-box {
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
+    margin: 0 auto;
+    background-color: #e3e6ea;
   }
   
   #code-input {
+    
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
   }
   
   
   
-  #button {
+  #submit-code {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  #submit-code:hover {
+    background-color: #0056b3;
+  }
+  #clear-code {
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
@@ -92,31 +138,30 @@ body {
     border-radius: 5px;
     cursor: pointer;
   }
-  #broadcast-button {
+  
+  #clear-code:hover {
+    background-color: #0056b3;
+  }
+  #public-button {
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    align-self: center;
   }
   
-  #broadcast-button:hover {
+#feedback-input {
+    width: 100%;
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+  
+  #public-button:hover {
     background-color: #0056b3;
   }
-  #button:hover {
-    background-color: #0056b3;
-  }
-  
-  #code-display {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
+
+ 

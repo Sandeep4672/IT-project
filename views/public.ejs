@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Teacher</title>
+  <title>Teacher Public</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/teacher-public.css">
 
 </head>
 <body>
-  <% if (locals.isAuth) { %>
-      <form action="/logout" method="POST">
-        <button>Logout</button>
-      </form>
-  <% } %>
+
   <h1>Teacher</h1>
   <div class="main-container">
     <div class="notification-container">
@@ -19,10 +15,9 @@
     </div>
     <div class="code-container">
       <div id="code-box">
-        <textarea id="code-input" rows="10" cols="50"></textarea> 
+        <textarea id="code-input" rows="13" cols="50"></textarea> 
         <button id="broadcast-button">Broadcast Code</button>
         <button id="button">Clear</button>
-        <button id="private-button">Private</button>
       </div>
     </div>
   </div>

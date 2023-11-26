@@ -17,24 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function hasSubmittedCode(callback) {
-      getStudentName((error, studentName) => {
-          if (error) {
-              console.error('Failed to retrieve student name:', error);
-              callback(error, null);
-          } else {
-              $.ajax({
-                  url: '/student/hasSubmittedCode',
-                  method: 'GET',
-                  data: { username: studentName },
-                  success: function (data) {
-                      callback(null, data.hasSubmittedCode);
-                  },
-                  error: function (error) {
-                      callback(error, null);
-                  }
-              });
-          }
-      });
+      return false;
   }
 
   $('#submit-code').click(() => {
