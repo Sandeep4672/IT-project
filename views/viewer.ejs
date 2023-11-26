@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Student</title>
+  <link rel="stylesheet" type="text/css" href="/styles/student-public.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
   <% if (locals.isAuth) { %>
@@ -9,8 +11,16 @@
       <button>Logout</button>
     </form>
 <% } %>
-  <h1>Student View</h1>
-  <div id="code-display"></div>
+   <h1>Code2Clear</h1>
+  <div class="main-container">
+    <div class="comment-container">
+      <h2>Comments</h2>
+    </div>
+    <div class="code-container">
+      <div id="code-display"></div>
+      <button id="private-button">Private</button>
+    </div>
+  </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="/scripts/student-script.js"></script>

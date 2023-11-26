@@ -68,4 +68,48 @@ document.addEventListener('DOMContentLoaded', function () {
       $(this).closest('.notification').remove();
     }
   });
+
+
+  function getSelectedText() {
+    let selectedText = '';
+    const selection = window.getSelection();
+    if (selection && selection.toString().trim() !== '') {
+      selectedText = selection.toString();
+    }
+    return selectedText;
+  }
+  
+  
+  $('#student-code').on('mouseup', function (e) {
+    const selectedText = getSelectedText().trim();
+    if (selectedText !== '') {
+      $('#highlight-options').css({
+        display: 'block',
+        left: e.pageX + 'px',
+        top: e.pageY + 'px'
+      });
+    }
+  });
+  
+  
+  $('#foreground-highlight, #strikethrough-highlight').click(() => {
+    const selectedText = getSelectedText().trim();
+    if (selectedText !== '') {
+      const command = $('#foreground-highlight').is(':focus') ? 'hiliteColor' : 'strikeThrough';
+  
+      const isHighlighted = document.queryCommandState(command);
+      
+      if (isHighlighted) {
+        document.execCommand('removeFormat', false, null);
+      } else {
+        document.execCommand(command, false, 'yellow');
+      }
+  
+      $('#highlight-options').css('display', 'none');
+      const highlightedCode = $('#student-code').html();
+      socket.emit('sendHighlightedCode', highlightedCode);
+    }
+  });
+  
 });
+
