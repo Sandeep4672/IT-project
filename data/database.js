@@ -4,7 +4,6 @@ let database;
 
 const mongodbURL = process.env.MONGODB_URL;  // Ensure this environment variable is correctly set
 
-console.log(mongodbURL);
 
 let client;
 

@@ -23,5 +23,13 @@ router.get('/teacher/private', async function (req, res) {
       res.status(500).json({ success: false, message: 'Internal server error.' });
     }
   });
+  
+  router.get('/student/getNotifications', async function (req, res) {
+    const username = req.session.name;
+    console.log("teacher routes USEEER",username);
+    const notifications = await Chat.getNotifications();
+    console.log("teacher routes",notifications);
+    res.json(notifications);
+  });
 
 module.exports = router;

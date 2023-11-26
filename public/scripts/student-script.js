@@ -15,19 +15,51 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    $('#submit-code').click(() => {
-    const code = $('#code-input').val();
-    getStudentName((error, studentName) => {
-      if (error) {
-        console.error('Failed to retrieve student name:', error);
-      } else {
-        $.post('/student/codeSubmission', { code: code,username: studentName}, (response) => {
-          console.log(response); 
-        });
-        socket.emit('submitCode', code, studentName);
-      }
+
+    function hasSubmittedCode(callback) {
+      getStudentName((error, studentName) => {
+          if (error) {
+              console.error('Failed to retrieve student name:', error);
+              callback(error, null);
+          } else {
+              $.ajax({
+                  url: '/student/hasSubmittedCode',
+                  method: 'GET',
+                  data: { username: studentName },
+                  success: function (data) {
+                      callback(null, data.hasSubmittedCode);
+                  },
+                  error: function (error) {
+                      callback(error, null);
+                  }
+              });
+          }
+      });
+  }
+
+  $('#submit-code').click(() => {
+    hasSubmittedCode((error, hasSubmitted) => {
+        if (error) {
+            console.error('Failed to check code submission status:', error);
+        } else {
+            if (hasSubmitted) {
+                alert('You have already submitted a code. Please wait for feedback.');
+            } else {
+                const code = $('#code-input').val();
+                getStudentName((error, studentName) => {
+                    if (error) {
+                        console.error('Failed to retrieve student name:', error);
+                    } else {
+                        $.post('/student/codeSubmission', { code: code, username: studentName }, (response) => {
+                            console.log(response);
+                        });
+                        socket.emit('submitCode', code, studentName);
+                    }
+                });
+            }
+        }
     });
-  });
+});
   
     $('#clear-code').click(() => {
       $('#code-input').val('');
