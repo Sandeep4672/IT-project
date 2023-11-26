@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   const socket = io();
 
-  // Function to add a notification to the DOM
   function addNotification(notification) {
     const notificationElement = $(`
       <div class="notification" data-username="${notification.username}">
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
-  // Fetch notifications on page load
   $.ajax({
     url: '/student/getNotifications',
     method: 'GET',
@@ -35,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   socket.on('notification', (notification) => {
-    console.log(notification);
+    console.log("Notificccccc",notification);
     addNotification(notification);
   });
 
@@ -63,8 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   $('.notification-container').on('click', '.cross-button', function () {
+    const confirmation = confirm('Are you sure you want to delete this notification?');
     const studentName = $(this).closest('.notification').find('p').text().split(' ')[0];
     socket.emit('deleteNotification', { studentName });
-    $(this).closest('.notification').remove();
+    if(confirmation){
+      $(this).closest('.notification').remove();
+    }
   });
 });

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth.controller');
 
+
 const Chat = require('../models/chat.model');
 
 router.get('/',function(req,res){
