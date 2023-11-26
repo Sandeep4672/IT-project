@@ -15,7 +15,6 @@ router.get('/student/private',function(req,res){
 
 router.post('/student/codeSubmission', async function (req, res) {
   const { code, username } = req.body;
-
   try {
     await Chat.saveCodeSubmission(username, code);
     

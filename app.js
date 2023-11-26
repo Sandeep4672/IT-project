@@ -11,6 +11,8 @@ const teacherRoutes = require('./routes/teacherRoutes.js');
 const expressSession = require('express-session');
 const db = require('./data/database');
 
+const Chat = require('./models/chat.model');
+
 const createSessionConfig = require('./config/session');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 const protectAuthMiddleware = require('./middlewares/protect-auth');
@@ -49,14 +51,27 @@ io.on('connection', (socket) => {
     });
 
     socket.on('submitCode', (code, studentName) => {
-        console.log("Sent code");
+        console.log("Sent code",studentName);
+        const notification = {
+            username: studentName,
+            message: `${studentName} sent you a request`
+        };
+    
         io.emit('codeSubmission', code);
-        io.emit('notification', `${studentName} sent you a request`);
+        io.emit('notification', notification);
+        console.log('Notification emitted:');
     });
 
     socket.on('teacherFeedback', (feedback) => {
         io.emit('teacherFeedback', feedback);
     });
+
+    socket.on('deleteNotification', ({ studentName }) => {
+        Chat.deleteNotificationByUsername(studentName);
+        io.emit('notificationDeleted', { studentName });
+    });
+
+    
 });
 
 const PORT = process.env.PORT || 3000;
