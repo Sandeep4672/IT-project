@@ -1,0 +1,67 @@
+<nav data-mdb-navbar-init class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+    <div class="container-fluid">
+        <button
+            data-mdb-collapse-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex align-items-center">
+                <a class="text-reset me-3" href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+
+                <div class="dropdown" id="avatarDropdown">
+                    <a
+                        data-mdb-dropdown-init
+                        class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                        href="#"
+                        id="navbarDropdownMenuAvatar"
+                        role="button"
+                        aria-expanded="false"
+                    >
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <ul
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="navbarDropdownMenuAvatar"
+                    >
+                        <li>
+                            <form action="profile" method="get">
+                                <button type="submit" class="dropdown-item">My profile</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form action="/logout" method="post">
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#avatarDropdown').on('click', function (event) {
+            event.stopPropagation(); 
+            $('.dropdown-menu').toggle();
+        });
+
+        $(document).on('click', function (event) {
+            if (!$(event.target).closest('#avatarDropdown').length) {
+                $('.dropdown-menu').hide();
+            }
+        });
+    });
+</script>

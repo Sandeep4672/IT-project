@@ -71,6 +71,12 @@ io.on('connection', (socket) => {
         io.emit('notificationDeleted', { studentName });
     });
 
+    socket.on('sendHighlightedCode', (highlightedCode) => {
+        console.log("Highlight",highlightedCode);
+        io.emit('highlightedCodeToStudents', highlightedCode);
+    });
+
+
     
 });
 

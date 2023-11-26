@@ -2,12 +2,11 @@
 <html>
 <head>
   <title>Student Page</title>
-  <style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/styles/student-private.css">
+    <style>
     .highlight {
       background-color: yellow;
-    }
-    .underline {
-      text-decoration: underline;
     }
     .strikethrough {
       text-decoration: line-through;
@@ -15,16 +14,26 @@
   </style>
 </head>
 <body>
-  <h1>Student Page</h1>
-  <div>
-    <h2>Code Submission</h2>
-    <textarea id="code-input" rows="10" cols="50"></textarea>
-    <button id="submit-code">Submit</button>
-    <button id="clear-code">Clear</button>
-  </div>
-  <div>
-    <h2>Teacher's Feedback</h2>
-    <div id="teacher-feedback"></div>
+  
+  <h1>Code2Clear</h1>
+  <div class="main-container">
+    <div class="code-container">
+      <div id="code-box">
+        <h3>Code Submission</h3>
+        <textarea id="code-input" rows="13" cols="20"></textarea>
+        <button id="submit-code">Submit</button>
+        <button id="clear-code">Clear</button>
+        <button id="public-button">Public</button>
+      </div>
+    </div>
+    <div class="highlighted-code">
+      <h2>Highlighted Code</h2>
+      <div id="highlighted-code" style="border: 1px solid #ccc; padding: 5px;"></div>
+    </div>
+    <div class="feedback-container">
+      <h2>Teacher's Feedback</h2>
+      <div id="teacher-feedback"></div>
+    </div>
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -32,3 +41,4 @@
 
 </body>
 </html>
+

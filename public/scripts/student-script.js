@@ -73,5 +73,11 @@ document.addEventListener('DOMContentLoaded', function () {
     socket.on('codeBroadcast', (code) => {
       document.getElementById('code-display').innerHTML = `<pre>${code}</pre>`;
     });
+
+    socket.on('highlightedCodeToStudents', (highlightedCode) => {
+      console.log(highlightedCode);
+      $('#highlighted-code').html(highlightedCode);
+     });
   });
+
   
