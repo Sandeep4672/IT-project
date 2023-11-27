@@ -6,8 +6,16 @@
     <link rel="stylesheet" type="text/css" href="/styles/teacher-private.css">
 </head>
 <body>
-  <h1>Code2Clear</h1>
-  <div class="main-container">
+  <h1>Code2Clear
+    <div class="dropdown" style="position: absolute; top: 15px; right: 10px;">
+      <button class="profile-button" >...</button>
+      <div class="dropdown-content" id="dropdownContent">
+        <a href="#">My profile</a>
+        <form action="/logout" method="post">
+          <button>Log out</button>
+          </form>
+    </div>
+  </h1>  <div class="main-container">
     <div class="notification-container">
       <h2>Notifications</h2>
       <div id="notification-container"></div>

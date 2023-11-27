@@ -18,6 +18,7 @@ const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 const protectAuthMiddleware = require('./middlewares/protect-auth');
 const protectAdminMiddleware = require('./middlewares/protect-admin');
 
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -39,8 +40,15 @@ app.use(protectAdminMiddleware, teacherRoutes);
 
 app.use('/socket.io', express.static(__dirname + '/node_modules/socket.io-client/dist'));
 
+const studentSocketIds = {};
+
 io.on('connection', (socket) => {
     console.log('A user connected');
+
+    socket.on('registerStudent', (studentName) => {
+        studentSocketIds[studentName] = socket.id;
+        console.log("hhh",studentSocketIds);
+    });
 
     socket.on('broadcastCode', (code) => {
         io.emit('codeBroadcast', code);
@@ -60,24 +68,34 @@ io.on('connection', (socket) => {
         io.emit('codeSubmission', code);
         io.emit('notification', notification);
         console.log('Notification emitted:');
+        
     });
 
-    socket.on('teacherFeedback', (feedback) => {
-        io.emit('teacherFeedback', feedback);
+    socket.on('teacherFeedback', ({ feedback, studentUsername }) => {
+        console.log("GMM", studentUsername);
+    
+        const studentSocketId = studentSocketIds[studentUsername];
+        console.log(studentSocketIds);
+        console.log("Hmm", studentSocketId);
+    
+        if (studentSocketId) {
+            io.to(studentSocketId).emit('teacherFeedback', feedback);
+        }
+   
     });
+
 
     socket.on('deleteNotification', ({ studentName }) => {
         Chat.deleteNotificationByUsername(studentName);
         io.emit('notificationDeleted', { studentName });
     });
 
-    socket.on('sendHighlightedCode', (highlightedCode) => {
-        console.log("Highlight",highlightedCode);
-        io.emit('highlightedCodeToStudents', highlightedCode);
+    socket.on('sendHighlightedCode', (highlightedCode,studentUsername) => {
+        const studentSocketId = studentSocketIds[studentUsername];
+        if (studentSocketId) {
+            io.to(studentSocketId).emit('highlightedCodeToStudents', highlightedCode);
+        }
     });
-
-
-    
 });
 
 const PORT = process.env.PORT || 3000;

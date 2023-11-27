@@ -4,15 +4,19 @@
   <title>Teacher</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/styles/teacher-public.css">
-
 </head>
 <body>
-  <% if (locals.isAuth) { %>
-      <form action="/logout" method="POST">
-        <button>Logout</button>
-      </form>
-  <% } %>
-  <h1>Clear2Code</h1>
+  <h1>Code2Clear
+    <div class="dropdown" style="position: absolute; top: 15px; right: 10px;">
+      <button class="profile-button" >...</button>
+      <div class="dropdown-content" id="dropdownContent">
+        <a href="#">My profile</a>
+        <form action="/logout" method="post">
+        <button>Log out</button>
+        </form>
+      </div>
+    </div>
+  </h1>
   <div class="main-container">
     <div class="notification-container">
       <h2>Notification</h2>
