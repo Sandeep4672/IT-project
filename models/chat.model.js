@@ -65,6 +65,14 @@ class Chat {
   static deleteNotificationByUsername(username) {
     return db.getDb().collection('notifications').deleteOne({ username: username });
   }
+
+  static getCodeBroadcastTeacher() {
+    return db.getDb().collection('chats').findOne(
+      { isAdmin: "true" },
+      { projection: { _id: 0, code: 1 } }
+    );
+  }
 }
+
 
 module.exports = Chat;

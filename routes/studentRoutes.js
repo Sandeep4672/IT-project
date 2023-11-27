@@ -4,8 +4,10 @@ const authController = require('../controllers/auth.controller');
 const Chat = require('../models/chat.model');
 
 
-router.get('/student',function(req,res){
-    res.render('../views/viewer');
+router.get('/student',async function(req,res){
+    let code=await Chat.getCodeBroadcastTeacher();
+    console.log("Teacher broadcasted",code.code);
+    res.render('../views/viewer',{code:code.code});
 });
 
 router.get('/student/private',function(req,res){

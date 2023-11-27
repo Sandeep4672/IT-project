@@ -39,8 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   $('#send-feedback').click(() => {
     const feedback = $('#feedback-input').val();
-    socket.emit('teacherFeedback', feedback);
-  });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const studentUsername = urlParams.get('student');
+    console.log("SSS",studentUsername);
+
+    socket.emit('teacherFeedback', { feedback, studentUsername });
+});
+
 
   $('#student-code').on('mousedown', 'div', function () {
     $(this).toggleClass('highlight');
@@ -48,6 +54,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   $('#broadcast-button').click(() => {
     const code = $('#code-input').val();
+    $.ajax({
+      url: '/student/codeSubmission',
+      method: 'POST',
+      data: { code: code,username:"Sandeep"},
+      success: function (data) {
+          console.log("Broadcast saved successfully:", data);
+      },
+      error: function (error) {
+          console.error('Failed to save broadcast:', error);
+      }
+  });
     socket.emit('broadcastCode', code);
   });
 
@@ -107,9 +124,11 @@ document.addEventListener('DOMContentLoaded', function () {
   
       $('#highlight-options').css('display', 'none');
       const highlightedCode = $('#student-code').html();
-      socket.emit('sendHighlightedCode', highlightedCode);
+      const urlParams = new URLSearchParams(window.location.search);
+      const studentUsername = urlParams.get('student');
+      console.log(studentUsername);
+      socket.emit('sendHighlightedCode', highlightedCode,studentUsername);
     }
   });
   
 });
-
