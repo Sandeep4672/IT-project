@@ -33,5 +33,7 @@ router.get('/teacher/private', async function (req, res) {
     res.json(notifications);
   });
 
+  
+
 
 module.exports = router;

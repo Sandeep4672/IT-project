@@ -58,9 +58,12 @@ class Chat {
     );
   }
 
-  static getNotifications() {
-    return db.getDb().collection('notifications').find({}, { projection: { _id: 0, username: 1, message: 1, timestamp: 1 } }).toArray();
-  }
+  static async getNotifications() {
+    return db.getDb().collection('notifications')
+        .find({ isAdmin: { $ne: true } }, { projection: { _id: 0, username: 1, message: 1, timestamp: 1 } })
+        .toArray();
+}
+
 
   static deleteNotificationByUsername(username) {
     return db.getDb().collection('notifications').deleteOne({ username: username });
