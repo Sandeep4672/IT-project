@@ -130,5 +130,24 @@ document.addEventListener('DOMContentLoaded', function () {
       socket.emit('sendHighlightedCode', highlightedCode,studentUsername);
     }
   });
+
+  $('#button').on('click', function () {
+    const confirmation = confirm('Are you sure you want to clear the broadcast?');
+    if(confirmation){
+      $('#code-input').val('');
+      $.ajax({
+        url: '/student/codeSubmission',
+        method: 'POST',
+        data: { code: '',username:"Sandeep"},
+        success: function (data) {
+            console.log("Broadcast saved successfully:", data);
+        },
+        error: function (error) {
+            console.error('Failed to save broadcast:', error);
+        }
+    });
+      socket.emit('broadcastCode', '');
+    }
+  });
   
 });
